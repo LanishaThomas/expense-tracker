@@ -114,5 +114,4 @@ Users can download their transaction history as a `.csv` file compatible with:
 
 ## ✨ Author
 
--Lanisha
-Built with a focus on clean architecture, scalable state management, and intelligent financial visualization.
+- Lanisha
