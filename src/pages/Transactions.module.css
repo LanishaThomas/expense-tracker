@@ -159,3 +159,36 @@
 :global(.dark) .deleteBtn:hover {
   background-color: #4b5563;
 }
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .wrapper {
+    border-radius: 14px;
+  }
+
+  .thead th {
+    padding: 12px;
+    font-size: 0.8rem;
+  }
+
+  .description,
+  .amount,
+  .center {
+    padding: 12px;
+    font-size: 0.85rem;
+  }
+
+  .badge {
+    font-size: 0.65rem;
+    padding: 4px 8px;
+  }
+
+  .deleteBtn {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+}

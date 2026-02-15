@@ -75,3 +75,18 @@
 :global(.dark) .expense {
   color: #f3f4f6;
 }
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .amount {
+    font-size: 1.5rem;
+  }
+}

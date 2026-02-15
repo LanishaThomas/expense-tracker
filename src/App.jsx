@@ -3,11 +3,14 @@ import { useState, useEffect } from "react";
 import Dashboard from "./pages/Dashboard";
 import AddTransaction from "./pages/AddTransaction";
 import Transactions from "./pages/Transactions";
+import "./App.css";
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("theme") === "dark";
   });
+
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -21,120 +24,90 @@ function App() {
     }
   }, [darkMode]);
 
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <div
-      className={`
-        min-h-screen transition-colors duration-500
-        ${
-          darkMode
-            ? "bg-gradient-to-br from-gray-700 via-gray-900 to-gray-700"
-            : "bg-gradient-to-br from-[#F3EDE2] via-[#E8DCC8] to-[#D2B48C]"
-        }
-      `}
+      className={`app-container ${
+        darkMode ? "dark-bg" : "light-bg"
+      }`}
     >
       <Router>
         {/* Navbar */}
-        <nav
-          className="
-            flex justify-between items-center
-            px-8 py-4
-            backdrop-blur-md
-            bg-[#F0D3A1]/80
-            dark:bg-gray-900
-            shadow-md
-            transition-colors duration-300
-          "
-        >
-          {/* Logo / Title */}
-          <h1 className="text-2xl font-bold text-[#4B3621] dark:text-white">
-            Expense Tracker
-          </h1>
+        <nav className="navbar">
 
-          {/* Navigation Buttons + Toggle */}
-          <div className="flex items-center space-x-4">
+          <h1 className="logo">Expense Tracker</h1>
 
-            <NavLink
-              to="/"
-              end
-              className={({ isActive }) =>
-                `
-                px-4 py-2 rounded-lg font-medium transition
-                ${
-                  isActive
-                    ? "bg-[#A0522D] text-white dark:bg-gray-700"
-                    : "bg-transparent text-[#4B3621] dark:text-gray-300 hover:bg-[#E8DCC8] dark:hover:bg-gray-800"
-                }
-                `
-              }
-            >
+          {/* Desktop Links */}
+          <div className="nav-links">
+            <NavLink to="/" end className="nav-btn">
               Dashboard
             </NavLink>
 
-            <NavLink
-              to="/add"
-              className={({ isActive }) =>
-                `
-                px-4 py-2 rounded-lg font-medium transition
-                ${
-                  isActive
-                    ? "bg-[#87A96B] text-white dark:bg-gray-700"
-                    : "bg-transparent text-[#4B3621] dark:text-gray-300 hover:bg-[#E8DCC8] dark:hover:bg-gray-800"
-                }
-                `
-              }
-            >
+            <NavLink to="/add" className="nav-btn">
               Add Transaction
             </NavLink>
 
-            <NavLink
-              to="/transactions"
-              className={({ isActive }) =>
-                `
-                px-4 py-2 rounded-lg font-medium transition
-                ${
-                  isActive
-                    ? "bg-[#8B4513] text-white dark:bg-gray-700"
-                    : "bg-transparent text-[#4B3621] dark:text-gray-300 hover:bg-[#E8DCC8] dark:hover:bg-gray-800"
-                }
-                `
-              }
-            >
+            <NavLink to="/transactions" className="nav-btn">
               Transactions
             </NavLink>
 
-            {/* Animated Toggle */}
             <button
               onClick={() => setDarkMode((prev) => !prev)}
-              className="
-                relative w-14 h-7 rounded-full
-                bg-[#A0522D] dark:bg-gray-700
-                transition-colors duration-300
-              "
+              className="theme-toggle"
             >
-              <span
-                className={`
-                  absolute top-1 left-1 w-5 h-5 rounded-full
-                  bg-white flex items-center justify-center text-xs
-                  transition-transform duration-300
-                  ${darkMode ? "translate-x-7" : ""}
-                `}
-              >
-                {darkMode ? "🌙" : "☀️"}
-              </span>
+              {darkMode ? "🌙" : "☀️"}
             </button>
+          </div>
 
+          {/* Hamburger */}
+          <div
+            className="hamburger"
+            onClick={() => setMenuOpen((prev) => !prev)}
+          >
+            ☰
           </div>
         </nav>
 
-        {/* Pages */}
-        <div className="p-8 max-w-6xl mx-auto">
+        {/* Mobile Menu */}
+        {/* Overlay */}
+{menuOpen && <div className="overlay" onClick={closeMenu}></div>}
+
+{/* Side Drawer */}
+<div className={`side-drawer ${menuOpen ? "open" : ""}`}>
+  <NavLink to="/" end className="mobile-link" onClick={closeMenu}>
+    Dashboard
+  </NavLink>
+
+  <NavLink to="/add" className="mobile-link" onClick={closeMenu}>
+    Add Transaction
+  </NavLink>
+
+  <NavLink
+    to="/transactions"
+    className="mobile-link"
+    onClick={closeMenu}
+  >
+    Transactions
+  </NavLink>
+
+  <button
+  onClick={() => setDarkMode(prev => !prev)}
+  className="theme-toggle"
+>
+  {darkMode ? "☀️" : "🌙"}
+</button>
+
+</div>
+
+
+        <div className="page-container">
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/add" element={<AddTransaction />} />
             <Route path="/transactions" element={<Transactions />} />
           </Routes>
         </div>
-
       </Router>
     </div>
   );

@@ -130,3 +130,38 @@
 :global(.dark) .submitBtn:hover {
   background-color: #4b5563;
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .heading {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .form {
+    gap: 18px;
+  }
+
+  .input {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+
+  .toggleWrapper {
+    flex-direction: column;
+  }
+
+  .toggleBtn {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .submitBtn {
+    padding: 14px;
+    font-size: 0.95rem;
+  }
+}
