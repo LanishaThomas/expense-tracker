@@ -61,7 +61,7 @@ const AddTransaction = () => {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             min="0"
-            step="500"
+            step="0.01"
           />
         </div>
 
