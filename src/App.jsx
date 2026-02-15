@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import Dashboard from "./pages/Dashboard";
 import AddTransaction from "./pages/AddTransaction";
 import Transactions from "./pages/Transactions";
+import Reports from "./pages/Reports";
+
 import "./App.css";
 
 function App() {
@@ -52,6 +54,10 @@ function App() {
               Transactions
             </NavLink>
 
+            <NavLink to="/reports" className="nav-btn">
+              Reports
+            </NavLink>
+
             <button
               onClick={() => setDarkMode((prev) => !prev)}
               className="theme-toggle"
@@ -91,6 +97,15 @@ function App() {
     Transactions
   </NavLink>
 
+  <NavLink
+    to="/reports"
+    className="mobile-link"
+    onClick={closeMenu}
+  >
+    Reports
+  </NavLink>
+
+
   <button
   onClick={() => setDarkMode(prev => !prev)}
   className="theme-toggle"
@@ -106,6 +121,7 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/add" element={<AddTransaction />} />
             <Route path="/transactions" element={<Transactions />} />
+            <Route path="/reports" element={<Reports darkMode={darkMode} />} />
           </Routes>
         </div>
       </Router>
