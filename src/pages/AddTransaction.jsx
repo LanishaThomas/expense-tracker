@@ -7,26 +7,29 @@ const AddTransaction = () => {
   const { addTransaction } = useContext(TransactionContext);
   const navigate = useNavigate();
 
+  const today = new Date().toISOString().split("T")[0];
+
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [type, setType] = useState("expense");
   const [category, setCategory] = useState("");
+  const [date, setDate] = useState(today);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!description || amount <= 0 || !category) {
+    if (!description.trim() || amount <= 0 || !category.trim()) {
       alert("Fill all fields properly");
       return;
     }
 
     addTransaction({
       id: Date.now(),
-      description,
+      description: description.trim(),
       amount: Number(amount),
       type,
-      category,
-      date: new Date().toISOString(),
+      category: category.trim(),
+      date: new Date(date).toISOString(),
     });
 
     navigate("/");
@@ -57,6 +60,8 @@ const AddTransaction = () => {
             className={styles.input}
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
+            min="0"
+            step="500"
           />
         </div>
 
@@ -94,6 +99,17 @@ const AddTransaction = () => {
             className={styles.input}
             value={category}
             onChange={(e) => setCategory(e.target.value)}
+          />
+        </div>
+
+        <div>
+          <label className={styles.label}>Date</label>
+          <input
+            type="date"
+            className={styles.input}
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            max={today}
           />
         </div>
 

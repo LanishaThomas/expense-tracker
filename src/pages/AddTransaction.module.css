@@ -74,18 +74,18 @@
 
 /* Submit Button */
 .submitBtn {
+  background-color: #5C3317 !important; /* brown default */
   padding: 16px;
   border-radius: 12px;
   border: none;
   font-weight: bold;
-  background-color: #A0522D; /* brown default */
   color: white;
   cursor: pointer;
   transition: 0.3s ease;
 }
 
 .submitBtn:hover {
-  background-color: #5C3317; /* darker brown */
+  background-color: #A0522D !important; /* darker brown */
 }
 
 /* Dark Mode Styles */
@@ -124,11 +124,11 @@
 
 
 :global(.dark) .submitBtn {
-  background-color: #374151;
+  background-color: #374151 !important;
 }
 
 :global(.dark) .submitBtn:hover {
-  background-color: #4b5563;
+  background-color: #4b5563 !important;
 }
 
 @media (max-width: 768px) {

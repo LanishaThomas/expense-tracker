@@ -5,6 +5,11 @@ import styles from "./Transactions.module.css";
 const Transactions = () => {
   const { transactions, deleteTransaction } = useContext(TransactionContext);
 
+  // Sort newest first
+  const sortedTransactions = [...transactions].sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
+
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>Transaction Ledger</h2>
@@ -22,13 +27,15 @@ const Transactions = () => {
                   <th>Amount</th>
                   <th>Type</th>
                   <th>Category</th>
+                  <th>Date</th>
                   <th className={styles.center}>Action</th>
                 </tr>
               </thead>
 
               <tbody>
-                {transactions.map((t) => (
+                {sortedTransactions.map((t) => (
                   <tr key={t.id} className={styles.row}>
+                    
                     <td className={styles.description}>
                       {t.description}
                     </td>
@@ -57,6 +64,16 @@ const Transactions = () => {
 
                     <td>{t.category}</td>
 
+                    <td>
+                      {t.date
+                        ? new Date(t.date).toLocaleDateString("en-IN", {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric",
+                          })
+                        : "—"}
+                    </td>
+
                     <td className={styles.center}>
                       <button
                         onClick={() => deleteTransaction(t.id)}
@@ -65,6 +82,7 @@ const Transactions = () => {
                         Delete
                       </button>
                     </td>
+
                   </tr>
                 ))}
               </tbody>
