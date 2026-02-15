@@ -1,0 +1,161 @@
+.container {
+  padding: 0 10px;
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #4B3621;
+  transition: color 0.3s ease;
+}
+
+.wrapper {
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #E8DCC8;
+  border: 1px solid #D2B48C;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease;
+}
+
+.empty {
+  padding: 40px;
+  text-align: center;
+  color: #5A3E2B;
+}
+
+.tableScroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.thead {
+  background-color: #D2B48C;
+  color: #4B3621;
+}
+
+.thead th {
+  padding: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.row {
+  border-top: 1px solid #D2B48C;
+  transition: background-color 0.2s ease;
+}
+
+.row:hover {
+  background-color: #F3EDE2;
+}
+
+.description {
+  padding: 20px;
+  font-weight: 500;
+}
+
+.amount {
+  padding: 20px;
+  font-weight: 600;
+}
+
+.income {
+  color: #87A96B;
+}
+
+.expense {
+  color: #8B4513;
+}
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+}
+
+.incomeBadge {
+  background-color: #87A96B;
+}
+
+.expenseBadge {
+  background-color: #8B4513;
+}
+
+.center {
+  text-align: center;
+  padding: 20px;
+}
+
+.deleteBtn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background-color: #8B4513;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.deleteBtn:hover {
+  background-color: #5C3317;
+}
+
+/* Dark Mode */
+:global(.dark) .heading {
+  color: white;
+}
+
+:global(.dark) .wrapper {
+  background-color: #111827;
+  border-color: #374151;
+}
+
+:global(.dark) .empty {
+  color: #9ca3af;
+}
+
+:global(.dark) .thead {
+  background-color: #1f2937;
+  color: #e5e7eb;
+  text-align: center;
+}
+
+:global(.dark) .row {
+  border-color: #374151;
+}
+
+:global(.dark) .row:hover {
+  background-color: #1f2937;
+}
+
+:global(.dark) .income,
+:global(.dark) .expense {
+  color: #e5e7eb;
+}
+
+:global(.dark) .description {
+  color: #e5e7eb;
+}
+
+:global(.dark) .table td {
+  color: #e5e7eb;
+  text-align: center;
+}
+
+:global(.dark) .deleteBtn {
+  background-color: #3d4757;
+}
+
+:global(.dark) .deleteBtn:hover {
+  background-color: #4b5563;
+}

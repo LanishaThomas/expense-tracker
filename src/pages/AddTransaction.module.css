@@ -1,0 +1,132 @@
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 40px;
+  border-radius: 20px;
+  background-color: #f3d9ad;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #4B3621;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: #5A3E2B;
+}
+
+.input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #C2B280;
+  background-color: #F3EDE2;
+  color: #4B3621;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.input:focus {
+  border-color: #87A96B;
+  box-shadow: 0 0 0 2px rgba(135, 169, 107, 0.2);
+}
+
+.toggleWrapper {
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #C2B280;
+}
+
+.toggleBtn {
+  flex: 1;
+  padding: 12px;
+  background-color: #F3EDE2;
+  color: #4B3621;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* Active states — SAME in light and dark */
+.toggleBtn.activeExpense {
+  background-color: #8B4513;
+  color: white;
+}
+
+.toggleBtn.activeIncome {
+  background-color: #87A96B;
+  color: white;
+}
+
+/* Submit Button */
+.submitBtn {
+  padding: 16px;
+  border-radius: 12px;
+  border: none;
+  font-weight: bold;
+  background-color: #A0522D; /* brown default */
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.submitBtn:hover {
+  background-color: #5C3317; /* darker brown */
+}
+
+/* Dark Mode Styles */
+:global(.dark) .container {
+  background-color: #111827;
+}
+
+:global(.dark) .heading {
+  color: white;
+}
+
+:global(.dark) .label {
+  color: #9ca3af;
+}
+
+:global(.dark) .input {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: white;
+}
+
+:global(.dark) .toggleBtn {
+  background-color: #1f2937;
+  color: #d1d5db;
+}
+/* Dark mode active states */
+:global(.dark) .activeExpense {
+  background-color: #8B4513; /* deep brown */
+  color: white;
+}
+
+:global(.dark) .activeIncome {
+  background-color: #87A96B; /* deep sage/olive */
+  color: white;
+}
+
+
+:global(.dark) .submitBtn {
+  background-color: #374151;
+}
+
+:global(.dark) .submitBtn:hover {
+  background-color: #4b5563;
+}

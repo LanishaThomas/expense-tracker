@@ -1,0 +1,77 @@
+.container {
+  padding: 0 10px;
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #4B3621;
+  transition: color 0.3s ease;
+}
+
+.grid {
+  display: grid;
+  gap: 30px;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  padding: 32px;
+  border-radius: 20px;
+  background-color: #eed1a0;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.label {
+  color: #5A3E2B;
+  font-size: 0.95rem;
+}
+
+.amount {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+/* Light Mode Colors */
+.balance {
+  color: #A0522D;
+}
+
+.income {
+  color: #87A96B;
+}
+
+.expense {
+  color: #8B4513;
+}
+
+/* Dark Mode Styles */
+:global(.dark) .heading {
+  color: white;
+}
+
+:global(.dark) .card {
+  background-color: #1f2937;
+}
+
+:global(.dark) .label {
+  color: #9ca3af;
+}
+
+:global(.dark) .balance,
+:global(.dark) .income,
+:global(.dark) .expense {
+  color: #f3f4f6;
+}
