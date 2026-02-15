@@ -10,9 +10,61 @@ const Transactions = () => {
     (a, b) => new Date(b.date) - new Date(a.date)
   );
 
+  const downloadCSV = () => {
+  if (transactions.length === 0) {
+    alert("No transactions to export.");
+    return;
+  }
+
+  const headers = [
+    "Description",
+    "Amount",
+    "Type",
+    "Category",
+    "Date"
+  ];
+
+  const rows = transactions.map((t) => [
+    t.description,
+    t.amount,
+    t.type,
+    t.category,
+    t.date
+      ? new Date(t.date).toLocaleDateString("en-IN")
+      : ""
+  ]);
+
+  const csvContent =
+    [headers, ...rows]
+      .map((row) =>
+        row.map((value) => `"${value}"`).join(",")
+      )
+      .join("\n");
+
+  const blob = new Blob([csvContent], {
+    type: "text/csv;charset=utf-8;"
+  });
+
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "transactions.csv";
+  link.click();
+
+  URL.revokeObjectURL(url);
+};
+
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>Transaction Ledger</h2>
+
+      <button
+  onClick={downloadCSV}
+  className={styles.exportBtn}
+>
+  Download CSV
+</button>
 
       <div className={styles.wrapper}>
         {transactions.length === 0 ? (
