@@ -1,7 +1,33 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { TransactionContext } from "../context/TransactionContext";
 import { useNavigate } from "react-router-dom";
 import styles from "./AddTransaction.module.css";
+
+const incomeCategories = [
+  "Salary",
+  "Freelancing",
+  "Business",
+  "Investments",
+  "Interest",
+  "Dividends",
+  "Rental Income",
+  "Bonus",
+  "Refund",
+  "Other Income",
+];
+
+const expenseCategories = [
+  "Food",
+  "Travel",
+  "Rent",
+  "Shopping",
+  "Utilities",
+  "Entertainment",
+  "Healthcare",
+  "Education",
+  "Insurance",
+  "Other Expense",
+];
 
 const AddTransaction = () => {
   const { addTransaction } = useContext(TransactionContext);
@@ -14,6 +40,11 @@ const AddTransaction = () => {
   const [type, setType] = useState("expense");
   const [category, setCategory] = useState("");
   const [date, setDate] = useState(today);
+
+  // Reset category when type changes
+  useEffect(() => {
+    setCategory("");
+  }, [type]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,6 +65,9 @@ const AddTransaction = () => {
 
     navigate("/");
   };
+
+  const categoryOptions =
+    type === "income" ? incomeCategories : expenseCategories;
 
   return (
     <div className={styles.container}>
@@ -93,13 +127,18 @@ const AddTransaction = () => {
 
         <div>
           <label className={styles.label}>Category</label>
-          <input
-            type="text"
-            placeholder="e.g. Food, Travel, Rent"
+          <select
             className={styles.input}
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-          />
+          >
+            <option value="">Select Category</option>
+            {categoryOptions.map((cat, index) => (
+              <option key={index} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>
