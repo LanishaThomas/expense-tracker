@@ -38,6 +38,24 @@ const Reports = ({ darkMode }) => {
     }));
   }, [transactions]);
 
+
+/* 1️⃣ Income by Category (for Doughnut) */
+
+const incomeByCategory = useMemo(() => {
+    const data = {};
+
+    transactions
+      .filter((t) => t.type === "income")
+      .forEach((t) => {
+        data[t.category] = (data[t.category] || 0) + t.amount;
+      });
+
+    return Object.entries(data).map(([name, value]) => ({
+      name,
+      value
+    }));
+  }, [transactions]);
+
   /* 2️⃣ Monthly Income vs Expense */
   const monthlyData = useMemo(() => {
     const data = {};
@@ -118,6 +136,30 @@ const palette = darkMode ? darkPalette : lightPalette;
               outerRadius={100}
             >
               {expenseByCategory.map((entry, index) => (
+                <Cell
+                    key={`cell-${index}`}
+                    fill={palette[index % palette.length]}
+                />
+                ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+
+      <div className={styles.card}>
+        <h3>Income Distribution</h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <PieChart>
+            <Pie
+              data={incomeByCategory}
+              dataKey="value"
+              nameKey="name"
+              innerRadius={70}
+              outerRadius={100}
+            >
+              {incomeByCategory.map((entry, index) => (
                 <Cell
                     key={`cell-${index}`}
                     fill={palette[index % palette.length]}
